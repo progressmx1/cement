@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/_index.tsx"],
+  "sourcesContent": ["// REMIX HMR BEGIN\nimport * as __hmr__ from \"remix:hmr\";\nif (import.meta) {\nimport.meta.hot = __hmr__.createHotContext(\n//@ts-expect-error\n\"app\\\\routes\\\\_index.tsx\"\n);\nimport.meta.hot.lastModified = \"1699819934372.7507\";\n}\n// REMIX HMR END\n\nimport React from 'react'\r\nimport { Typography } from '@material-tailwind/react'\r\nimport NavBar from '~/componets/nav'\r\nfunction _index() {\r\n  return (\r\n    <>\r\n        {/* <NavBar/> */}\r\n        <div className=''>\r\n        </div>\r\n    </>\r\n  )\r\n}\r\n\r\nexport default _index"],
+  "mappings": ";;;;;;;;;;;;;AAgBI;AAdJ,IAAI,aAAa;AACjB,cAAY,MAAc;AAAA;AAAA,IAE1B;AAAA,EACA;AACA,cAAY,IAAI,eAAe;AAC/B;AAMA,SAAS,SAAS;AAChB,SACE,sFAEI,6DAAC,SAAI,WAAU,MAAf;AAAA;AAAA;AAAA;AAAA,SACA,KAHJ;AAAA;AAAA;AAAA;AAAA,SAIA;AAEJ;AAEA,IAAO,gBAAQ;",
+  "names": []
+}

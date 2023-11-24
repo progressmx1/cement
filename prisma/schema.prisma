@@ -1,0 +1,112 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+model user{
+  id   String   @id @default(auto()) @map("_id") @db.ObjectId
+  fullName String
+  email String  @unique
+  password String
+  patient Patient[]
+  vitals Vitals[]
+  notes Notes[]
+  appointments Appointments[]
+  bill Bill[]
+  billItems billItems[]
+}
+
+model Appointments{
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName String
+  reason String
+  createdOn String
+  startTime String
+  status String
+  endTime String 
+  owner user@relation(fields: [createdBy], references: [id])
+  createdBy String @db.ObjectId
+}
+model Patient{
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName String
+  gender String
+  createdOn String
+  phone String
+  dob String
+  idNumber String
+  reason String
+  paymentMethod String
+  status String
+  owner user@relation(fields: [createdBy], references: [id])
+  createdBy String @db.ObjectId
+  vitals Vitals[]
+  notes Notes[]
+  bill Bill[]
+}
+
+model Vitals{
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  bloodPresure String
+  height String
+  temperature String
+  weight String
+  createdOn String
+  owner user@relation(fields: [createdBy], references: [id])
+  createdBy String @db.ObjectId
+  patient Patient @relation(fields: [patientId], references: [id])
+  patientId String @db.ObjectId
+}
+
+model Notes{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  presentComplain String
+  complainHistory String
+  medicalHistory String
+  diagnosis String
+  createdOn String
+  owner user@relation(fields: [createdBy], references: [id])
+  createdBy String @db.ObjectId
+  patient Patient @relation(fields: [patientId], references: [id])
+  patientId String @db.ObjectId
+}
+
+model Bill{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  currency String
+  status String
+  lockStatus String
+  createdOn String
+  modifiedOn String
+  owner user @relation(fields: [createdBy], references: [id])
+  createdBy String @db.ObjectId
+  patient Patient @relation(fields: [patientId], references: [id])
+  patientId String @db.ObjectId
+  billItems billItems[]
+
+}
+
+model billItems{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  code String
+  quantity Int
+  price Float
+  status String
+  createdOn String
+  modifiedOn String
+  modifiedBy String
+  owner user @relation(fields: [createdBy], references: [id])
+  createdBy String @db.ObjectId
+  bill Bill @relation(fields: [billId], references: [id])
+  billId String @db.ObjectId
+}
