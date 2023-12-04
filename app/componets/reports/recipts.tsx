@@ -25,13 +25,12 @@ const data=
     }
 ]
 
-export default function InStock() {
+export default function Recipts() {
   return (
-    <div className='flex flex-col mt-6 w-full md:w-3/4 lg:w-2/4'>
-        <div>Instock</div>
         <div>
-            <Table Head={Head} data={data} />
+            <div>
+                <Table Head={Head} data={data} />
+            </div>
         </div>
-    </div>
   )
 }

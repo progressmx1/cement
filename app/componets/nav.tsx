@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import {AiOutlineHome,AiOutlinePieChart, AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
+import {AiOutlinePieChart, AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
+import { BiTachometer } from "react-icons/bi";
+import { RiUserSettingsLine, RiDashboard3Line  } from "react-icons/ri";
 import {FaUsersCog} from 'react-icons/fa'
 import {CiBag1} from 'react-icons/ci'
 import List from './list'
@@ -13,7 +15,7 @@ const data =
     {
         name:"Dashboard",
         link:"./",
-        icon:AiOutlineHome
+        icon:RiDashboard3Line 
     },
     {
         name:"Stock",
@@ -22,13 +24,13 @@ const data =
     },
     {
         name:"Reports",
-        link:"./",
+        link:"/reports",
         icon:AiOutlinePieChart
     },
     {
         name:"Accounts",
         link:"./",
-        icon:FaUsersCog
+        icon: RiUserSettingsLine
     },
 ]
 export default function NavBar() {
@@ -38,35 +40,40 @@ export default function NavBar() {
 
   return (
     <>
-        <div className='fixed flex flex-row gap-4 bg-blue-900 text-white w-full h-auto z-1 p-4 mb-28'>
-            <div className='w-2/4'>
+        <div className='fixed flex flex-row gap-4 bg-[#1F2937] text-white w-full h-auto z-[100] p-4 mb-28'>
+            <div className=''>
                 <Typography variant="h4" className="text-bold">
                     Cement
                 </Typography>
             </div>
-            <div className='hidden lg:block lg:w-full'>
-                <List className='flex-row gap-2 float-right'>
+            <div className='hidden lg:block lg:w-full pl-3'>
+                <List className='flex-row gap-x-4 font-semibold'>
                     {
                         data.map((links)=>(
-                            <ListItem key={links.name} className='flex-row gap-1 place-content-center align-center mx-auto hover:bg-blue-500 hover:rounded-md p-1'>
-                                <links.icon className='w-5 h-5'></links.icon>
+                            <ListItem key={links.name} className='flex-row gap-1 place-content-center align-center mx-auto hover:bg-black hover:rounded-md p-1'>
+                                {/* <links.icon className='w-[18px] h-[18px]'></links.icon> */}
                                 <NavLink to={links.link}>{links.name}</NavLink>
-                            </ListItem>  
+                            </ListItem> 
                         ))
                     }
                 </List>
             </div>
+            {/* <div className='flex flex-row float-right bg-red-500'>
+                <div className='rounded-full p-2 bg-blue-300'>
+                    P
+                </div>
+            </div> */}
             <div className='absolute right-[60px] top-5 lg:hidden'>
             {!open? 
-                <AiOutlineMenu className='text-[#0068ff] hover:cursor-pointer font-semibold h-8 w-8 p-1 rounded-full' onClick={handleMobile}/>
-                :<AiOutlineClose className='text-[#0068ff] hover:cursor-pointer h-8 w-8 p-1 rounded-full' onClick={handleMobile}/>}
+                <AiOutlineMenu className='text-white hover:cursor-pointer font-semibold h-8 w-8 p-1 rounded-full' onClick={handleMobile}/>
+                :<AiOutlineClose className='text-white hover:cursor-pointer h-8 w-8 p-1 rounded-full' onClick={handleMobile}/>}
         </div>
         </div>
-        <div className={open? 'absolute bg-white top-12 right-3 z-[2] p-4 rounded-lg border-[1px] border-gray-600  lg:hidden': "hidden"}>
+        <div className={open? 'fixed bg-white top-[55px] right-3 z-[105] p-4 rounded-lg border-[1px] border-gray-600  lg:hidden': "hidden"}>
             <List className='flex-col gap-2'>
                 {
                     data.map((links)=>(
-                        <ListItem key={links.name} className='flex-row gap-1 hover:bg-blue-500 hover:rounded-md p-1'>
+                        <ListItem key={links.name} className='flex-row gap-1 text-sm hover:bg-gray-300 hover:rounded-md p-1'>
                             <links.icon className='w-5 h-5'></links.icon>
                             <NavLink to={links.link}>{links.name}</NavLink>
                         </ListItem>  
